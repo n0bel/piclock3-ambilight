@@ -90,6 +90,10 @@ A WS2812 wants its data at 5V, and the Pi gives 3.3V.  Many strips take it
 anyway.  If yours flickers or shows wrong colors, a 74AHCT125 between the
 pin and the strip lifts the data to 5V.
 
+**Coming from PiClock v1?**  Its strip took data on GPIO18, pin 12.  Move
+that one wire to GPIO10, pin 19; the strip's power and ground stay where
+they are.
+
 ## Installing
 
 Needs PiClock3 2026.10.09 or later.  Then, on the Pi:
