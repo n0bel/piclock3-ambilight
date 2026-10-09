@@ -5,8 +5,9 @@ A strip of WS2812 LEDs behind a
 v1 turned a rainbow around its strip once a minute, and that's the look
 this starts with.
 
-The effects and the bits sent to the strip are tested.  It hasn't lit a
-real strip yet.
+It works on a Pi 3 with Raspberry Pi OS Trixie: a strip of 27, taking
+3.3V data with no level shifter.  At 30 frames a second the clock uses
+about 7% of the Pi 3's CPU.
 
 ## Looks, effects and palettes
 
