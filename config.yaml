@@ -1,0 +1,35 @@
+kind: ambilight
+
+# PiClock v1's strip
+leds: 27
+
+# a long strip at full white draws more than a small supply can give
+brightness: 0.5
+
+# what most WS2812 strips expect
+order: grb
+
+device: /dev/spidev0.0
+
+# smooth to the eye, and light work for the Pi
+rate: 30
+
+look: rainbow
+
+pages: {}
+
+palettes:
+  rainbow: [red, yellow, lime, cyan, blue, magenta]
+  sunset:  ['#ff6a00', '#e0335a', '#7a1fa2']
+  ocean:   ['#00334d', '#0077b6', '#48cae4']
+  warm:    ['#ffb46b']
+  night:   ['#300000']
+
+looks:
+  # PiClock v1's: once around the strip a minute
+  rainbow: {effect: turn, palette: rainbow, period: 60}
+  sunset:  {effect: breathe, palette: sunset, period: 8}
+  ocean:   {effect: turn, palette: ocean, period: 30}
+  warm:    {effect: solid, palette: warm}
+  night:   {effect: solid, palette: night}
+  dark:    {effect: dark}

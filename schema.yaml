@@ -1,0 +1,76 @@
+description: >
+  A strip of WS2812 LEDs behind the clock, lit with a look: an effect, the
+  colors it draws with, and how fast it moves.
+
+service: true
+
+types:
+
+  effect-name:
+    is: scalar
+    one-of: [dark, solid, gradient, turn, breathe]
+    help: How the colors move.  dark is no light, solid is the first color,
+      gradient spreads them along the strip, turn moves that gradient
+      along it, and breathe fades each color up and down in turn.
+
+  palette:
+    is: list
+    of: color
+    help: Colors, in order.  Effects that spread them along the strip go
+      around from the last back to the first.
+
+  look:
+    is: block
+    help: An effect, the palette it draws with, and how fast it moves.
+    of:
+      effect:
+        is: effect-name
+        required: true
+        help: How the colors move.
+      palette:
+        is: string
+        help: A palette by name, from palettes.
+      period:
+        is: number
+        unit: seconds
+        range: [0.5, 3600]
+        help: Seconds for turn to go once around the strip, or for breathe
+          to fade one color up and down.
+
+settings:
+
+  leds:
+    is: number
+    range: [1, 1000]
+    help: How many LEDs the strip has.
+  brightness:
+    is: number
+    range: [0, 1]
+    help: How bright, from 0 for dark to 1 for full.
+  order:
+    is: scalar
+    one-of: [rgb, rbg, grb, gbr, brg, bgr]
+    help: The order the strip takes red, green and blue in.
+  device:
+    is: string
+    help: The SPI device the strip's data line is on.
+  rate:
+    is: number
+    unit: frames per second
+    range: [1, 60]
+    help: How often the strip is drawn again.
+  look:
+    is: string
+    help: The look shown on every page that pages does not name.
+  pages:
+    is: table
+    of: string
+    help: A look for each page, by the page's name.
+  palettes:
+    is: table
+    of: palette
+    help: Palettes by name.  A config adds to these and can replace one.
+  looks:
+    is: table
+    of: look
+    help: Looks by name.  A config adds to these and can replace one.
